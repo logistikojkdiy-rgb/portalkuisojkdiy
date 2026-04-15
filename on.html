@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Portal Utama - OJK DIY</title>
+    
+    <!-- Preload Assets & Fonts -->
+    <link rel="icon" type="image/png" href="https://ik.imagekit.io/logojkdiy/ojk-indonesia-seeklogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: {
+                        ojk: { DEFAULT: '#8B0000', 50: '#fef2f2', 100: '#fee2e2', 500: '#ef4444', 600: '#dc2626', 900: '#7f1d1d' },
+                        surface: { DEFAULT: '#ffffff', dark: '#0f172a' }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'shake': 'shake 0.4s cubic-bezier(.36,.07,.19,.97) both'
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        slideUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        shake: { '10%, 90%': { transform: 'translate3d(-2px, 0, 0)' }, '20%, 80%': { transform: 'translate3d(4px, 0, 0)' }, '30%, 50%, 70%': { transform: 'translate3d(-6px, 0, 0)' }, '40%, 60%': { transform: 'translate3d(6px, 0, 0)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #0f172a; color: #1e293b; overflow: hidden; }
+        
+        /* Glassmorphism Panel */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Floating Input */
+        .input-floating { position: relative; width: 100%; margin-bottom: 1.25rem; }
+        .input-floating input {
+            width: 100%; background-color: #f8fafc; border: 2px solid #e2e8f0; border-radius: 1rem;
+            padding: 1.6rem 1.25rem 0.5rem 1.25rem; font-size: 0.95rem; font-weight: 700; color: #1e293b;
+            transition: all 0.3s ease;
+        }
+        .input-floating input:focus { outline: none; background-color: #ffffff; border-color: #8B0000; box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.1); }
+        .input-floating label {
+            position: absolute; left: 1.25rem; top: 1.15rem; color: #94a3b8; font-size: 0.95rem;
+            font-weight: 600; pointer-events: none; transition: all 0.2s ease;
+        }
+        .input-floating input:focus ~ label, .input-floating input:not(:placeholder-shown) ~ label {
+            top: 0.4rem; font-size: 0.75rem; font-weight: 800; color: #8B0000;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative flex items-center justify-center selection:bg-ojk-50 selection:text-ojk-900 font-sans">
+
+    <!-- Ambient Background -->
+    <div class="fixed inset-0 -z-20 w-full h-full bg-slate-900">
+        <video src="https://ik.imagekit.io/logojkdiy/Background%20Biru%20Abu%20Putih.mp4" autoplay loop muted playsinline class="w-full h-full object-cover opacity-80"></video>
+    </div>
+    <div class="fixed inset-0 -z-10 bg-gradient-to-b from-slate-900/40 via-slate-900/60 to-slate-900/90 backdrop-blur-sm"></div>
+
+    <!-- MAIN SPLASH CONTAINER -->
+    <div class="relative z-10 w-full max-w-[1000px] px-4 flex flex-col items-center justify-center opacity-0 animate-slide-up">
+        
+        <!-- Center Glass Card -->
+        <div class="w-full max-w-lg glass-panel rounded-[2.5rem] p-8 sm:p-12 text-center relative overflow-hidden">
+            <!-- Decorative Blurs -->
+            <div class="absolute -top-20 -right-20 w-64 h-64 bg-ojk-50 rounded-full blur-[60px] opacity-60 pointer-events-none"></div>
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-50 rounded-full blur-[60px] opacity-60 pointer-events-none"></div>
+
+            <!-- Content -->
+            <div class="relative z-10">
+                <div class="inline-flex items-center gap-2 bg-white/50 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/50 w-max mb-8 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
+                    <span class="text-[10px] font-extrabold tracking-widest uppercase text-slate-700">Software as a Services</span>
+                </div>
+
+                <img src="https://ik.imagekit.io/logojkdiy/ojk-indonesia-seeklogo.png" alt="OJK DIY" class="h-16 sm:h-20 object-contain mx-auto mb-6 animate-float drop-shadow-md">
+                
+                <h1 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mb-3">Portal Kuis</h1>
+                <p class="text-slate-500 text-sm sm:text-base font-medium leading-relaxed mb-10 max-w-sm mx-auto">Silakan pilih akses Anda.</p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col gap-4">
+                    <!-- Button to Quiz (Direct) -->
+                    <a href="https://script.google.com/macros/s/AKfycbz756NYyexqK4c6QlSr5pgyCbNPx3obtpuXB_Exr0WP1bHEC5z1c8lxmEmhFA65oB_AKg/exec" 
+                       class="group w-full flex justify-between items-center px-6 py-4 sm:py-5 rounded-[1.25rem] text-white bg-gradient-to-r from-slate-900 to-slate-800 hover:from-ojk hover:to-ojk-900 transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(139,0,0,0.4)] active:scale-[0.98]">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white">edit_document</span>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-sm font-extrabold tracking-wide">Akses Kuis Internal</p>
+                                <p class="text-[10px] font-medium text-white/60">Kuis Internal Pegawai OJK DIY</p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">arrow_forward_ios</span>
+                    </a>
+
+                    <!-- Button to Dashboard (Requires Auth Modal) -->
+                    <button onclick="openAuthModal()" 
+                            class="group w-full flex justify-between items-center px-6 py-4 sm:py-5 rounded-[1.25rem] text-slate-700 bg-white border-2 border-slate-100 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300 shadow-sm active:scale-[0.98]">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-white group-hover:shadow-sm transition-all">
+                                <span class="material-symbols-outlined text-slate-500">monitoring</span>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-sm font-extrabold tracking-wide">Dasbor Peringkat</p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Masuk dengan Sandi</p>
+                            </div>
+                        </div>
+                        <span class="material-symbols-outlined text-slate-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-slate-500">lock</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-10 pt-6 border-t border-slate-200/50">
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Otoritas Jasa Keuangan &bull; DIY</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- AUTHENTICATION MODAL (LEADERBOARD)         -->
+    <!-- ========================================== -->
+    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="modal-glass w-full max-w-sm rounded-[2rem] p-8 relative z-10 transform scale-95 transition-transform duration-300 border border-white/50" id="auth-card">
+            
+            <button onclick="closeAuthModal()" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+
+            <div class="text-center mb-8 pt-2">
+                <div class="w-16 h-16 bg-slate-900 text-white rounded-[1.25rem] flex items-center justify-center text-3xl mx-auto mb-5 shadow-lg transform rotate-3">
+                    <span class="material-symbols-outlined text-4xl">admin_panel_settings</span>
+                </div>
+                <h2 class="text-2xl font-black text-slate-900 tracking-tight">Verifikasi Akses</h2>
+                <p class="text-slate-500 mt-2 text-xs font-medium leading-relaxed">Masukkan kredensial khusus administrator.</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="input-floating group">
+                    <input type="text" id="admin-user" placeholder=" " required autocomplete="off" class="group-hover:border-slate-300">
+                    <label for="admin-user">Username</label>
+                </div>
+                <div class="input-floating group">
+                    <input type="password" id="admin-pass" placeholder=" " required autocomplete="off" class="group-hover:border-slate-300">
+                    <label for="admin-pass">Kata Sandi</label>
+                </div>
+
+                <!-- Error Message Placeholder -->
+                <p id="auth-error" class="text-xs font-bold text-red-500 text-center mb-4 hidden"></p>
+
+                <button type="submit" id="btn-auth" class="w-full flex justify-center items-center gap-2 py-4 rounded-[1.25rem] text-sm font-bold text-white bg-slate-900 hover:bg-black transition-all duration-300 shadow-lg active:scale-[0.98]">
+                    <span id="txt-auth">Buka Dasbor</span>
+                    <span class="material-symbols-outlined hidden animate-spin" id="ldr-auth">progress_activity</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        // URLs Konfigurasi
+        const URL_QUIZ = "https://script.google.com/macros/s/AKfycbz756NYyexqK4c6QlSr5pgyCbNPx3obtpuXB_Exr0WP1bHEC5z1c8lxmEmhFA65oB_AKg/exec";
+        const URL_DASHBOARD = "https://script.google.com/macros/s/AKfycbz756NYyexqK4c6QlSr5pgyCbNPx3obtpuXB_Exr0WP1bHEC5z1c8lxmEmhFA65oB_AKg/exec?page=dashboard";
+
+        // Modal Controls
+        const modal = document.getElementById('auth-modal');
+        const card = document.getElementById('auth-card');
+        const errorText = document.getElementById('auth-error');
+
+        function openAuthModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-95');
+            card.classList.add('scale-100');
+            // Auto focus username
+            setTimeout(() => document.getElementById('admin-user').focus(), 100);
+        }
+
+        function closeAuthModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            card.classList.remove('scale-100');
+            card.classList.add('scale-95');
+            errorText.classList.add('hidden');
+            document.getElementById('admin-user').value = '';
+            document.getElementById('admin-pass').value = '';
+        }
+
+        // Logic Autentikasi Front-End
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value.trim();
+            const pass = document.getElementById('admin-pass').value.trim();
+            const btn = document.getElementById('btn-auth');
+            
+            // Set UI to loading state
+            btn.disabled = true;
+            document.getElementById('txt-auth').textContent = "Memverifikasi...";
+            document.getElementById('ldr-auth').classList.remove('hidden');
+            errorText.classList.add('hidden');
+
+            // Simulasi proses verifikasi jaringan (UX purpose)
+            setTimeout(() => {
+                if (user === 'LMSt' && pass === '1234') {
+                    // Berhasil: Arahkan ke URL Dashboard
+                    document.getElementById('txt-auth').textContent = "Mengalihkan...";
+                    window.location.href = URL_DASHBOARD;
+                } else {
+                    // Gagal: Tampilkan error & getarkan form (Haptic Feedback)
+                    btn.disabled = false;
+                    document.getElementById('txt-auth').textContent = "Buka Dasbor";
+                    document.getElementById('ldr-auth').classList.add('hidden');
+                    
+                    errorText.textContent = "Kredensial tidak valid. Akses ditolak.";
+                    errorText.classList.remove('hidden');
+                    
+                    // Efek Shake
+                    card.classList.remove('animate-shake');
+                    void card.offsetWidth; // Trigger reflow
+                    card.classList.add('animate-shake');
+                    
+                    // Kosongkan password
+                    document.getElementById('admin-pass').value = '';
+                }
+            }, 800);
+        }
+
+        // Menambahkan listener untuk menutup modal dengan tombol 'Escape'
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !modal.classList.contains('opacity-0')) {
+                closeAuthModal();
+            }
+        });
+    </script>
+</body>
+</html>
